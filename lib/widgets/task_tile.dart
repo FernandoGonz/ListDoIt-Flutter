@@ -1,20 +1,30 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Task extends StatelessWidget {
+class TaskCheckBox extends StatelessWidget {
 
-  final String taskDescription;
-  bool isChecked = false;
+  final bool isDone;
+  final String name;
+  final VoidCallback toggleDone;
 
-  Task({required this.taskDescription});
+  TaskCheckBox({required this.isDone, required this.name, required this.toggleDone});
 
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
-      title: Text(taskDescription),
+      title: Text(
+        name,
+        style: TextStyle(
+          decoration: isDone
+              ? TextDecoration.lineThrough
+              : null,
+        ),
+      ),
       secondary: Icon(Icons.ac_unit),
-      value: isChecked,
-      onChanged: (bool? value) {
-        isChecked = value!;
+      activeColor: Colors.lightBlueAccent,
+      value: isDone,
+      onChanged: (newValue) {
+        toggleDone();
       },
     );
   }
