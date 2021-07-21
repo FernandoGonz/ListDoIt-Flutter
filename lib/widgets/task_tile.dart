@@ -23,7 +23,7 @@ class TaskCheckBox extends StatelessWidget {
       secondary: Icon(Icons.ac_unit),
       activeColor: Colors.lightBlueAccent,
       value: isDone,
-      onChanged: (newValue) {
+      onChanged: (bool? newValue) {
         toggleDone();
       },
     );

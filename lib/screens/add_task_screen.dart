@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    String taskName = '';
+
     return SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -34,12 +39,15 @@ class AddTaskScreen extends StatelessWidget {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   onChanged: (value) {
-                    // Do something
+                    taskName = value;
                   },
                 ),
                 TextButton(
                   onPressed: (){
-                    //Do something
+                    if (taskName != '') {
+                      Provider.of<TaskData>(context, listen: false).addNewTask(taskName);
+                      Navigator.pop(context);
+                    }
                   },
                   child: Text('Add'),
                 ),
